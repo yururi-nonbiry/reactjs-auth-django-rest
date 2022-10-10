@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+
+  # React
+  react:
+    build:
+      dockerfile: ./docker/react/Dockerfile
+    working_dir: /app
+    volumes:
+      - ./react_frontend:/app
+      - .env:/app/.env
+    ports:
+      - 3000:3000
+    user: "${uid}:${gid}"
+    tty: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - django
+
+    command: sh -c "npm start"
+
+  # Django
+  django:
+    build:
+      dockerfile: ./docker/django/Dockerfile
+    volumes:
+      - ./django_backend:/home/project
+      - .env:/home/project.env
+    working_dir: /home/project
+    ports:
+      - "8000:8000"
+    tty: true
+    #command: python manage.py runserver 0.0.0.0:8000

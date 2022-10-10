@@ -1,7 +1,7 @@
 import axios from "axios";
-import { SubmissionError } from 'redux-form';
+import { SubmissionError } from "redux-form";
 import history from "../utils/historyUtils";
-import { actions as notifActions } from 'redux-notifications';
+import { actions as notifActions } from "redux-notifications";
 const { notifSend } = notifActions;
 
 import { AuthTypes } from "../constants/actionTypes";
@@ -16,7 +16,7 @@ export function authLogin(token) {
     };
 }
 
-export function loginUser(formValues, dispatch, props) {
+export function loginUser(formValues, dispatch, /*props*/) {
         const loginUrl = AuthUrls.LOGIN;
 
         return axios.post(loginUrl, formValues).then((response) => {
@@ -42,11 +42,11 @@ export function logoutUser() {
     };
 }
 
-export function signupUser(formValues, dispatch, props) {
+export function signupUser(formValues, /*dispatch, props*/) {
     const signupUrl = AuthUrls.SIGNUP;
 
     return axios.post(signupUrl, formValues)
-        .then((response) => {
+        .then((/*response*/) => {
             // If request is good...
             // you can login if email verification is turned off.
             // const token = response.data.key;
@@ -78,7 +78,7 @@ export function getUserProfile() {
         if (token) {
             axios.get(AuthUrls.USER_PROFILE, {
                 headers: {
-                    authorization: 'Token ' + token
+                    authorization: "Token " + token
                 }
             }).then(response => {
                 dispatch(setUserProfile(response.data))
@@ -92,17 +92,17 @@ export function getUserProfile() {
     };
 }
 
-export function changePassword(formValues, dispatch, props) {
+export function changePassword(formValues, dispatch, /*props*/) {
     const changePasswordUrl = AuthUrls.CHANGE_PASSWORD;
     const token = getUserToken(store.getState());
 
     if (token) {
         return axios.post(changePasswordUrl, formValues, {
             headers: {
-                authorization: 'Token ' + token
+                authorization: "Token " + token
             }
         })
-            .then((response) => {
+            .then((/*response*/) => {
                 dispatch(notifSend({
                     message: "Password has been changed successfully",
                     kind: "info",
@@ -120,11 +120,11 @@ export function changePassword(formValues, dispatch, props) {
     }
 }
 
-export function resetPassword(formValues, dispatch, props) {
+export function resetPassword(formValues, /*dispatch, props*/) {
     const resetPasswordUrl = AuthUrls.RESET_PASSWORD;
 
     return axios.post(resetPasswordUrl, formValues)
-        .then(response => {
+        .then(/*response*/() => {
             // redirect to reset done page
             history.push("/reset_password_done");
         }).catch((error) => {
@@ -141,7 +141,7 @@ export function confirmPasswordChange(formValues, dispatch, props) {
     const data = Object.assign(formValues, { uid, token });
 
     return axios.post(resetPasswordConfirmUrl, data)
-        .then(response => {
+        .then(/*response*/() => {
             dispatch(notifSend({
                 message: "Password has been reset successfully, please log in",
                 kind: "info",
@@ -163,7 +163,7 @@ export function activateUserAccount(formValues, dispatch, props) {
     const data = Object.assign(formValues, { key });
 
     return axios.post(activateUserUrl, data)
-        .then(response => {
+        .then(/*response*/() => {
             dispatch(notifSend({
                 message: "Your account has been activated successfully, please log in",
                 kind: "info",
@@ -179,15 +179,15 @@ export function activateUserAccount(formValues, dispatch, props) {
         });
 }
 
-export function updateUserProfile(formValues, dispatch, props) {
+export function updateUserProfile(formValues, dispatch, /*props*/) {
     const token = getUserToken(store.getState());
 
     return axios.patch(AuthUrls.USER_PROFILE, formValues, {
         headers: {
-            authorization: 'Token ' + token
+            authorization: "Token " + token
         }
     })
-        .then(response => {
+        .then(/*response*/() => {
             dispatch(notifSend({
                 message: "Your profile has been updated successfully",
                 kind: "info",
@@ -204,7 +204,7 @@ export function updateUserProfile(formValues, dispatch, props) {
 }
 // util functions
 function processServerError(error) {
-    return  Object.keys(error).reduce(function(newDict, key) {
+    return Object.keys(error).reduce(function(newDict, key) {
         if (key === "non_field_errors") {
             newDict["_error"].push(error[key]);
         } else if (key === "token") {

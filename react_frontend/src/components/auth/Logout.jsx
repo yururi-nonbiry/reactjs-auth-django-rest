@@ -5,11 +5,11 @@ import { logoutUser } from "../../actions/authActions";
 
 class Logout extends Component {
 
-    static propTypes = {
+    static PropTypes = {
         logoutUser: PropTypes.func.isRequired
     };
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.props.logoutUser();
     }
 

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 class Header extends Component {
 
-    static propTypes = {
+    static PropTypes = {
         authenticated: PropTypes.bool
     };
 

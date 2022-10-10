@@ -1,0 +1,58 @@
+version: "3.9"
+
+services:
+
+  # React
+  react:
+    build:
+      dockerfile: ./docker/react/Dockerfile
+    working_dir: /app
+    volumes:
+      - ./react_frontend:/app
+    ports:
+      - 3000:3000
+    user: "${uid}:${gid}"
+    tty: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - django
+
+    #command: sh -c "yarn start"
+
+  # Django
+  django:
+    build:
+      dockerfile: ./docker/django/Dockerfile
+    volumes:
+      - ./django_backend:/home/project
+    working_dir: /home/project
+    ports:
+      - "8000:8000"
+    tty: true
+    command: python manage.py runserver 0.0.0.0:8000
+
+  # https-portal
+  https-portal:
+    container_name: https-portal
+    image: steveltn/https-portal:1
+    ports:
+      - '80:80'
+      - '443:443'
+    links:
+      - nginx
+    restart: always
+    volumes:
+      - ./certs:/var/lib/https-portal
+    environment:
+      STAGE: 'staging' # self-signed certificate
+      #STAGE: 'production' # Production operation
+      #FORCE_RENEW: 'true' # certificate reset
+      CLIENT_MAX_BODY_SIZE: 100M # upload limit defailt:1MB
+      #WEBSOCKET: "true" # enable websockets
+      HSTS_MAX_AGE: 60 # 秒 time to transfer to https
+      DOMAINS: >-
+        ${FRONTEND_DOMAIN} -> http://react:3000,
+        ${REACT_APP_DOMAIN} -> http://django:8000,
+    depends_on:
+      - react

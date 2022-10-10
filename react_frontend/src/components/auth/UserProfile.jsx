@@ -6,12 +6,12 @@ import { getUserProfile } from "../../actions/authActions";
 
 class UserProfile extends Component {
 
-    static propTypes = {
+    static PropTypes = {
         getUserProfile: PropTypes.func.isRequired,
         user: PropTypes.object
     };
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.props.getUserProfile();
     }
 

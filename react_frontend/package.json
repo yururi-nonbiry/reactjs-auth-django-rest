@@ -5,12 +5,10 @@
   "main": "src/index.js",
   "repository": "https://github.com/ZachLiuGIS/reactjs-auth-django-rest",
   "scripts": {
-    "clean": "rimraf ./dist",
-    "lint": "eslint ./src ./tests",
-    "build": "npm run clean && npm run test && webpack --progress --profile --colors",
-    "start": "webpack-dev-server --port 8083",
-    "test": "npm run lint && mocha --require babel-register ./tests/setup.js --recursive ./tests/**/*.spec.js",
-    "test:watch": "npm run test -- --watch"
+    "start": "react-scripts start",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "author": "Zach Liu",
   "license": "MIT",
@@ -59,10 +57,23 @@
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
+    "react-scripts": "^5.0.1",
     "redux": "^3.7.2",
     "redux-form": "^7.1.2",
     "redux-form-validators": "^2.1.0",
     "redux-notifications": "^4.0.1",
     "redux-thunk": "^2.2.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

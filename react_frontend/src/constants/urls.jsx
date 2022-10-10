@@ -1,3 +1,4 @@
+//const ROOT_URL = process.env.REACT_APP_DOMAIN;
 const ROOT_URL = "http://localhost:8000/";
 
 export const AuthUrls = {

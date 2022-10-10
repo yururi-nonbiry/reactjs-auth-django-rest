@@ -6,16 +6,16 @@ import { connect } from "react-redux";
 export default function(ComposedComponent) {
     class Authentication extends Component {
 
-        static propTypes = {
+        static PropTypes = {
             history: PropTypes.object
         };
 
-        componentWillMount() {
+        UNSAFE_componentWillMount() {
             this.checkAuthentication(this.props);
 
         }
 
-        componentWillUpdate(nextProps) {
+        UNSAFE_componentWillUpdate(nextProps) {
             this.checkAuthentication(nextProps);
         }
 

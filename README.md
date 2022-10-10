@@ -23,31 +23,21 @@ of web applications that needs authentication.
 
 Clone the repository, which includes both backend and frontend.
 
-## Backend: Django, Django Rest Framework and Django-Rest-Auth
+## Container: docker compose
 
-cd to django_backend directory
+Verification is done on ubunt22.04 LTS
 
-create your virtualenv and activate (python3) 
-under win: python -m venv 'envname'
+Docker version 20.10.18
+Docker Compose version v2.3.3
 
-run `pip install -r requirements.txt` to install all django dependencies.
+run `sh setup.sh`
 
-run `python manage.py migrate` to migrate database.
+rewrite it according to your environment
+Default is localhost
 
-run `python manage.py runserver` to start django development server to serve the demo site.
+run `start docker compose`
 
-the backend server should be localhost:8000.
-
-## Frontend: React/Redux
-
-all JavaScript and html source code are within react_src directory, bundle.js will be generated in 
-static/js directory. index.html will be generated in templates/project directory.
-
-run `npm install` to install all node dependencies.
-
-run `npm run start` to start the webpack dev server for frontend app.
-
-now you can go to localhost:8083 to access the main page of the demo site.
+now you can go to localhost:3000 to access the main page of the demo site.
 
 ## Issue Reporting
 

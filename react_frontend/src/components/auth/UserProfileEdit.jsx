@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { reduxForm, Field, propTypes } from "redux-form";
-import { connect } from 'react-redux'
-import { required } from "redux-form-validators"
+import { connect } from "react-redux"
+//import { required } from "redux-form-validators"
 
 import { renderField, renderTextAreaField, renderError} from "../../utils/renderUtils";
 import { updateUserProfile } from "../../actions/authActions";

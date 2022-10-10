@@ -35,7 +35,7 @@ class Login extends Component {
 
                     <fieldset className="form-group">
                         <Field name="password" label="Password" component={renderField}
-                               type="password"  validate={[required({message: "This field is required."})]}
+                               type="password" validate={[required({message: "This field is required."})]}
                         />
                     </fieldset>
 

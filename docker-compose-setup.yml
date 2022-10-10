@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+
+  # React
+  react:
+    build:
+      dockerfile: ./docker/react/Dockerfile
+    working_dir: /app
+    volumes:
+      - ./react_frontend:/app
+      - .env:/app/.env
+    user: "${uid}:${gid}"
+    tty: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - django
+
+  # Django
+  django:
+    build:
+      dockerfile: ./docker/django/Dockerfile
+    volumes:
+      - ./django_backend:/home/project
+      - .env:/home/project.env
+    working_dir: /home/project
+    tty: true

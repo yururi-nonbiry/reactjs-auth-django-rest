@@ -177,6 +177,8 @@ CORS_ORIGIN_WHITELIST = (
 CORS_ORIGIN_REGEX_WHITELIST = (
     r'^(https?://)?localhost',
     r'^(https?://)?127.',
+    r'^(http?://)?localhost',
+    r'^(http?://)?127.',
 )
 
 # Email Settings
