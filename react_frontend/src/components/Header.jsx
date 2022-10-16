@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 class Header extends Component {
 
-    static PropTypes = {
-        authenticated: PropTypes.bool
+    static propTypes = {
+        authenticated: propTypes.bool
     };
 
     renderLinks() {

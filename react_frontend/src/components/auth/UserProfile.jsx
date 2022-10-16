@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getUserProfile } from "../../actions/authActions";
 
 class UserProfile extends Component {
 
-    static PropTypes = {
-        getUserProfile: PropTypes.func.isRequired,
-        user: PropTypes.object
+    static propTypes = {
+        getUserProfile: propTypes.func.isRequired,
+        user: propTypes.object
     };
 
     UNSAFE_componentWillMount() {

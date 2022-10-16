@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 
 class Logout extends Component {
 
-    static PropTypes = {
-        logoutUser: PropTypes.func.isRequired
+    static propTypes = {
+        logoutUser: propTypes.func.isRequired
     };
 
     UNSAFE_componentWillMount() {

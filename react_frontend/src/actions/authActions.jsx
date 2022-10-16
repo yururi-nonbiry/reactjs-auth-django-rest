@@ -2,12 +2,12 @@ import axios from "axios";
 import { SubmissionError } from "redux-form";
 import history from "../utils/historyUtils";
 import { actions as notifActions } from "redux-notifications";
-const { notifSend } = notifActions;
-
 import { AuthTypes } from "../constants/actionTypes";
 import { AuthUrls } from "../constants/urls";
 import store from "../store";
 import { getUserToken } from "../utils/authUtils";
+
+const { notifSend } = notifActions;
 
 export function authLogin(token) {
     return {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 import { reduxForm, Field, propTypes } from "redux-form";
 import { Link } from "react-router-dom";
 import { required } from "redux-form-validators"
