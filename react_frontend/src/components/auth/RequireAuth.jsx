@@ -1,7 +1,23 @@
 import React, { Component } from "react";
 import propTypes from "prop-types";
-import {withRouter} from "react-router-dom";
+//import {withRouter} from "react-router-dom";
 import { connect } from "react-redux";
+
+import { useNavigate } from "react-router-dom";
+
+export const withRouter = (Component) => {
+  const Wrapper = (props) => {
+    const history = useNavigate();
+    
+    return (
+      <Component
+        history={history}
+        {...props}
+        />
+    );
+  };
+  return Wrapper;
+};
 
 export default function(ComposedComponent) {
     class Authentication extends Component {

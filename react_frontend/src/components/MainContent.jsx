@@ -1,5 +1,6 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+//import { Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import RequireAuth from "./auth/RequireAuth";
 import Landing from "./Landing";
 import Login from "./auth/Login";
@@ -17,21 +18,21 @@ import NoMatch from "./NoMatch";
 
 const MainContent = () => (
     <div>
-        <Switch>
-            <Route exact path="/" component={Landing}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/logout" component={Logout}/>
-            <Route path="/signup" component={Signup}/>
-            <Route path="/account/confirm-email/:key" component={AccountActivation}/>
-            <Route path="/signup_done" component={SignupDone}/>
-            <Route path="/reset_password" component={PasswordReset}/>
-            <Route path="/reset_password_done" component={PasswordResetDone}/>
-            <Route path="/reset/:uid/:token/" component={PasswordResetConfirm}/>
-            <Route path="/profile" component={RequireAuth(UserProfile)}/>
-            <Route path="/profile_edit" component={RequireAuth(UserProfileEdit)}/>
-            <Route path="/change_password" component={RequireAuth(PasswordChange)}/>
-            <Route component={NoMatch}/>
-        </Switch>
+        <Routes>
+            <Route path="/" element={<Landing/>}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/logout" element={<Logout/>}/>
+            <Route path="/signup" element={<Signup/>}/>
+            <Route path="/account/confirm-email/:key" element={<AccountActivation/>}/>
+            <Route path="/signup_done" element={<SignupDone/>}/>
+            <Route path="/reset_password" element={<PasswordReset/>}/>
+            <Route path="/reset_password_done" element={<PasswordResetDone/>}/>
+            <Route path="/reset/:uid/:token/" element={<PasswordResetConfirm/>}/>
+            <Route path="/profile" element={RequireAuth(<UserProfile/>)}/>
+            <Route path="/profile_edit" element={RequireAuth(<UserProfileEdit/>)}/>
+            <Route path="/change_password" element={RequireAuth(<PasswordChange/>)}/>
+            <Route element={<NoMatch/>}/>
+        </Routes>
     </div>
 );
 
